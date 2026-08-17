@@ -8,6 +8,7 @@ from .encoder import Encoder
 from .decoder import Decoder
 from .vocab import build_vocab
 
+
 class Tokenizer:
     """
     Main public tokenizer interface.
@@ -35,41 +36,26 @@ class Tokenizer:
 
         self.pretokenizer = RegexPreTokenizer(pattern)
         self.merges = {}
-        self.vocab = build_vocab(
-            self.merges,
-            self.config.base_vocab_size
-        )
+        self.vocab = build_vocab(self.merges, self.config.base_vocab_size)
 
         self.encoder = Encoder(
-            self.merges,
-            self.pretokenizer,
-            self.config.special_tokens
+            self.merges, self.pretokenizer, self.config.special_tokens
         )
-        self.decoder = Decoder(
-            self.vocab,
-            self.config.special_tokens
-        )
+        self.decoder = Decoder(self.vocab, self.config.special_tokens)
 
-    def train(self, text, verbose=True):
-        trainer = BPETrainer(
-            self.config,
-            self.pretokenizer
-        )
+    def train(self, text, verbose=True, char_budget=80_000_000):
+        trainer = BPETrainer(self.config, self.pretokenizer)
 
         self.merges, self.vocab = trainer.train(
             text,
-            verbose=verbose
+            verbose=verbose,
+            char_budget=char_budget,
         )
 
         self.encoder = Encoder(
-            self.merges,
-            self.pretokenizer,
-            self.config.special_tokens
+            self.merges, self.pretokenizer, self.config.special_tokens
         )
-        self.decoder = Decoder(
-            self.vocab,
-            self.config.special_tokens
-        )
+        self.decoder = Decoder(self.vocab, self.config.special_tokens)
 
         return self
 
@@ -96,12 +82,8 @@ class Tokenizer:
             "characters": chars,
             "utf8_bytes": byte_count,
             "tokens": token_count,
-            "characters_per_token": (
-                chars / token_count if token_count else 0.0
-            ),
-            "bytes_per_token": (
-                byte_count / token_count if token_count else 0.0
-            ),
+            "characters_per_token": (chars / token_count if token_count else 0.0),
+            "bytes_per_token": (byte_count / token_count if token_count else 0.0),
         }
 
     def save(self, path):
@@ -114,19 +96,11 @@ class Tokenizer:
             "base_vocab_size": self.config.base_vocab_size,
             "pattern": self.config.pattern,
             "special_tokens": self.config.special_tokens,
-            "merges": [
-                [p0, p1, idx]
-                for (p0, p1), idx in self.merges.items()
-            ],
+            "merges": [[p0, p1, idx] for (p0, p1), idx in self.merges.items()],
         }
 
         with path.open("w", encoding="utf-8") as f:
-            json.dump(
-                data,
-                f,
-                ensure_ascii=False,
-                indent=2
-            )
+            json.dump(data, f, ensure_ascii=False, indent=2)
 
     @classmethod
     def load(cls, path):
@@ -140,31 +114,21 @@ class Tokenizer:
             vocab_size=int(data["vocab_size"]),
             pattern=data["pattern"],
             special_tokens={
-                token: int(idx)
-                for token, idx in data.get(
-                    "special_tokens", {}
-                ).items()
+                token: int(idx) for token, idx in data.get("special_tokens", {}).items()
             },
         )
 
         tokenizer.merges = {
-            (int(p0), int(p1)): int(idx)
-            for p0, p1, idx in data["merges"]
+            (int(p0), int(p1)): int(idx) for p0, p1, idx in data["merges"]
         }
 
         tokenizer.vocab = build_vocab(
-            tokenizer.merges,
-            tokenizer.config.base_vocab_size
+            tokenizer.merges, tokenizer.config.base_vocab_size
         )
 
         tokenizer.encoder = Encoder(
-            tokenizer.merges,
-            tokenizer.pretokenizer,
-            tokenizer.config.special_tokens
+            tokenizer.merges, tokenizer.pretokenizer, tokenizer.config.special_tokens
         )
-        tokenizer.decoder = Decoder(
-            tokenizer.vocab,
-            tokenizer.config.special_tokens
-        )
+        tokenizer.decoder = Decoder(tokenizer.vocab, tokenizer.config.special_tokens)
 
         return tokenizer
