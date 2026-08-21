@@ -1,0 +1,54 @@
+{
+  "hindi": {
+    "language": "hindi",
+    "splits": {
+      "train": {
+        "files": 1,
+        "documents": 7061250,
+        "characters": 2152245131,
+        "files_list": [
+          "/content/drive/MyDrive/LMA_Project/hindi/splits/train/hindi_train_00000.jsonl.gz"
+        ]
+      },
+      "validation": {
+        "files": 1,
+        "documents": 71912,
+        "characters": 21537503,
+        "files_list": [
+          "/content/drive/MyDrive/LMA_Project/hindi/splits/validation/hindi_validation_00000.jsonl.gz"
+        ]
+      },
+      "test": {
+        "files": 1,
+        "documents": 72393,
+        "characters": 22152082,
+        "files_list": [
+          "/content/drive/MyDrive/LMA_Project/hindi/splits/test/hindi_test_00000.jsonl.gz"
+        ]
+      }
+    }
+  },
+  "nepali": {
+    "language": "nepali",
+    "splits": {
+      "train": {
+        "files": 0,
+        "documents": 0,
+        "characters": 0,
+        "files_list": []
+      },
+      "validation": {
+        "files": 0,
+        "documents": 0,
+        "characters": 0,
+        "files_list": []
+      },
+      "test": {
+        "files": 0,
+        "documents": 0,
+        "characters": 0,
+        "files_list": []
+      }
+    }
+  }
+}

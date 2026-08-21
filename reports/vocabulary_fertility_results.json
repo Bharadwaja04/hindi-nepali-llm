@@ -1,0 +1,80 @@
+[
+  {
+    "vocab_size": 8192,
+    "hindi_fertility": 2.732826770992145,
+    "hindi_characters_per_token": 2.0621992819623713,
+    "hindi_tokens": 3676409,
+    "hindi_words": 1345277,
+    "nepali_fertility": 2.698932292542871,
+    "nepali_characters_per_token": 2.199610089388971,
+    "nepali_tokens": 9625796,
+    "nepali_words": 3566520,
+    "hindi_training_minutes": 7.814541701475779,
+    "nepali_training_minutes": 9.697391402721404
+  },
+  {
+    "vocab_size": 16384,
+    "hindi_fertility": 2.5593257002089533,
+    "hindi_characters_per_token": 2.2019993017721164,
+    "hindi_tokens": 3443002,
+    "hindi_words": 1345277,
+    "nepali_fertility": 2.544580711730202,
+    "nepali_characters_per_token": 2.333036116279598,
+    "nepali_tokens": 9075298,
+    "nepali_words": 3566520,
+    "hindi_training_minutes": 8.457458202044169,
+    "nepali_training_minutes": 9.921425974369049
+  },
+  {
+    "vocab_size": 24576,
+    "hindi_fertility": 2.4855929299319026,
+    "hindi_characters_per_token": 2.2673195345071835,
+    "hindi_tokens": 3343811,
+    "hindi_words": 1345277,
+    "nepali_fertility": 2.4801159113085025,
+    "nepali_characters_per_token": 2.3936779221431115,
+    "nepali_tokens": 8845383,
+    "nepali_words": 3566520,
+    "hindi_training_minutes": 8.970231012503307,
+    "nepali_training_minutes": 10.23339639902115
+  },
+  {
+    "vocab_size": 32768,
+    "hindi_fertility": 2.4434499363328146,
+    "hindi_characters_per_token": 2.306424748495414,
+    "hindi_tokens": 3287117,
+    "hindi_words": 1345277,
+    "nepali_fertility": 2.441741249172863,
+    "nepali_characters_per_token": 2.431297215978974,
+    "nepali_tokens": 8708519,
+    "nepali_words": 3566520,
+    "hindi_training_minutes": 9.253214971224468,
+    "nepali_training_minutes": 10.490261650085449
+  },
+  {
+    "vocab_size": 49152,
+    "hindi_fertility": 2.3963823063948912,
+    "hindi_characters_per_token": 2.351725511337869,
+    "hindi_tokens": 3223798,
+    "hindi_words": 1345277,
+    "nepali_fertility": 2.397512981842244,
+    "nepali_characters_per_token": 2.476148720034598,
+    "nepali_tokens": 8550778,
+    "nepali_words": 3566520,
+    "hindi_training_minutes": 9.660918736457825,
+    "nepali_training_minutes": 10.64093631108602
+  },
+  {
+    "vocab_size": 65536,
+    "hindi_fertility": 2.370500647821973,
+    "hindi_characters_per_token": 2.377402178753081,
+    "hindi_tokens": 3188980,
+    "hindi_words": 1345277,
+    "nepali_fertility": 2.3716564045624304,
+    "nepali_characters_per_token": 2.503144506866417,
+    "nepali_tokens": 8458560,
+    "nepali_words": 3566520,
+    "hindi_training_minutes": 10.046929780642191,
+    "nepali_training_minutes": 10.740088085333506
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "hindi": {
+    "manual_tokens": 100000000,
+    "non_manual_tokens": 399999998,
+    "documents": 2312791,
+    "words": 886594715,
+    "characters": 5393815951,
+    "vocab_size": 31744,
+    "merges": 31488,
+    "training_chars": 80000000,
+    "total_tokens": 499999998,
+    "manual_fraction": 0.2000000008,
+    "fertility": 0.5639555363241704,
+    "characters_per_token": 10.787631945150528,
+    "tokens_per_document": 216.18901059369395
+  },
+  "nepali": {
+    "manual_tokens": 99999956,
+    "non_manual_tokens": 400000000,
+    "documents": 10056762,
+    "words": 2192518752,
+    "characters": 14368756302,
+    "vocab_size": 31744,
+    "merges": 31488,
+    "training_chars": 80000000,
+    "total_tokens": 499999956,
+    "manual_fraction": 0.1999999295999938,
+    "fertility": 0.22804820052002,
+    "characters_per_token": 28.737515132901333,
+    "tokens_per_document": 49.71778749462302
+  }
+}

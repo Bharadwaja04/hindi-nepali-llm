@@ -1,0 +1,31 @@
+{
+  "language": "nepali",
+  "seed": 42,
+  "ratios": {
+    "train": 0.8,
+    "validation": 0.1,
+    "test": 0.1
+  },
+  "splits": {
+    "train": {
+      "files": 1,
+      "documents": 36496,
+      "characters": 55164938,
+      "path": "/content/drive/MyDrive/LMA_Project/nepali/splits/train/nepali_train_00000.jsonl.gz"
+    },
+    "validation": {
+      "files": 1,
+      "documents": 4562,
+      "characters": 6685307,
+      "path": "/content/drive/MyDrive/LMA_Project/nepali/splits/validation/nepali_validation_00000.jsonl.gz"
+    },
+    "test": {
+      "files": 1,
+      "documents": 4563,
+      "characters": 6979674,
+      "path": "/content/drive/MyDrive/LMA_Project/nepali/splits/test/nepali_test_00000.jsonl.gz"
+    }
+  },
+  "total_documents": 45621,
+  "total_characters": 68829919
+}
