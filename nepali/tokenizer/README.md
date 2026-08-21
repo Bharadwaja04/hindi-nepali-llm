@@ -1,55 +1,439 @@
-# Language Tokenizer
+# Nepali BPE Tokenizer
 
-This folder contains the from-scratch regex-pre-tokenized byte-level
-BPE tokenizer used by the Hindi/Nepali language-model project.
+This directory contains the from-scratch Byte Pair Encoding (BPE)
+tokenizer developed for the Nepali language corpus in Phase 1 of the
+LMA project.
 
-## Architecture
+The Nepali tokenizer is trained independently from the Hindi tokenizer.
+No pretrained tokenizer vocabulary or merge table is used.
+
+---
+
+## 1. Tokenization Pipeline
+
+The tokenizer follows the pipeline below:
 
 ```text
-text
-  -> Unicode NFC
-  -> regex pre-tokenization
-  -> UTF-8 bytes
-  -> BPE
-  -> token IDs
+Input Text
+    |
+    v
+Unicode NFC Normalization
+    |
+    v
+Unicode-aware Regex Pre-tokenization
+    |
+    v
+UTF-8 Byte Representation
+    |
+    v
+BPE Merge Operations
+    |
+    v
+Token IDs
 ```
 
-No GPT-4/tiktoken vocabulary or pretrained merge table is used.
+---
 
-## Files
+## 2. Components
 
-- `tokenizer.py` - public tokenizer interface
-- `bpe.py` - core BPE operations
-- `pretokenizer.py` - Unicode-aware regex pre-tokenization
-- `trainer.py` - BPE training
-- `encoder.py` - text -> token IDs
-- `decoder.py` - token IDs -> text
-- `vocab.py` - vocabulary construction
-- `config.py` - tokenizer configuration
-- `train.py` - command-line training entry point
-- `evaluate.py` - evaluation entry point
+| Component | File | Description |
+|---|---|---|
+| Tokenizer interface | `tokenizer.py` | Main public tokenizer API |
+| BPE operations | `bpe.py` | Core Byte Pair Encoding operations |
+| Pre-tokenizer | `pretokenizer.py` | Unicode-aware regex pre-tokenization |
+| BPE trainer | `trainer.py` | Learns merge operations from training text |
+| Encoder | `encoder.py` | Converts text into token IDs |
+| Decoder | `decoder.py` | Converts token IDs back into text |
+| Vocabulary | `vocab.py` | Constructs the tokenizer vocabulary |
+| Configuration | `config.py` | Defines tokenizer configuration |
+| Training | `train.py` | Command-line tokenizer training entry point |
+| Evaluation | `evaluate.py` | Tokenizer evaluation entry point |
+| Tests | `test_tokenizer.py` | Tokenizer correctness tests |
 
-## Install
+---
+
+## 3. Unicode Normalization
+
+Nepali text is normalized using Unicode NFC normalization before
+tokenization.
+
+This ensures that canonically equivalent Unicode representations are
+treated consistently.
+
+The normalization step is implemented in:
+
+`nepali/tokenizer/pretokenizer.py`
+
+The tokenizer therefore performs:
+
+```text
+Raw text
+   |
+   v
+NFC normalization
+   |
+   v
+Pre-tokenization
+   |
+   v
+BPE
+```
+
+---
+
+## 4. Pre-tokenization
+
+The tokenizer uses a Unicode-aware regular expression pre-tokenizer.
+
+The pre-tokenizer separates:
+
+- whitespace
+- Unicode letters
+- combining marks
+- numbers
+- punctuation and other symbols
+
+The implementation uses the Python `regex` package because it provides
+Unicode property support such as `\p{L}`, `\p{M}`, and `\p{N}`.
+
+Install the dependency with:
 
 ```bash
 pip install regex
 ```
 
-## Train
+The pre-tokenizer is implemented in:
+
+`nepali/tokenizer/pretokenizer.py`
+
+---
+
+## 5. Byte-Level BPE
+
+After pre-tokenization, text pieces are represented using UTF-8 bytes.
+
+The initial vocabulary is based on the byte-level base vocabulary.
+
+BPE training repeatedly identifies frequent adjacent symbol pairs and
+merges them into new vocabulary entries.
+
+Conceptually:
+
+```text
+Initial symbols
+      |
+      v
+Find frequent pair
+      |
+      v
+Merge pair
+      |
+      v
+Add token to vocabulary
+      |
+      v
+Repeat
+```
+
+The learned merge operations are stored as part of the trained
+tokenizer artifact.
+
+---
+
+## 6. Tokenizer Training
+
+The tokenizer is trained independently on the Nepali corpus.
+
+A fixed 80M-character training budget is used for learning the BPE
+merge operations.
+
+The tokenizer does not need to be trained on the complete 500M-token
+corpus. The large corpus is used for the final tokenized dataset,
+while the 80M-character sample provides the training text used to
+learn the vocabulary and merge operations.
+
+### Training Configuration
+
+| Parameter | Value |
+|---|---|
+| Language | Nepali |
+| Vocabulary size | 31,744 |
+| BPE merges | 31,488 |
+| Training character budget | 80,000,000 |
+
+---
+
+## 7. Training from the Command Line
 
 From the repository root:
 
 ```bash
-python -m hindi.tokeniser.train     --language hindi     --data data/clean/hindi     --vocab-size 32000     --output hindi/tokeniser/hindi_tokenizer.json
+python -m nepali.tokenizer.train     --language nepali     --data <PATH_TO_NEPALI_TRAINING_DATA>     --vocab-size 31744     --output nepali/model/nepali_bpe_31744.json     --char-budget 80000000
 ```
 
-For Nepali:
+### Arguments
+
+| Argument | Description |
+|---|---|
+| `--language` | Language identifier; `nepali` for this tokenizer |
+| `--data` | Training text file or directory |
+| `--vocab-size` | Target vocabulary size |
+| `--output` | Path for the trained tokenizer artifact |
+| `--char-budget` | Maximum number of training characters |
+
+The Phase 1 character budget is:
+
+`80,000,000 characters`
+
+---
+
+## 8. Loading a Trained Tokenizer
+
+A trained tokenizer can be loaded using:
+
+```python
+from nepali.tokenizer.tokenizer import Tokenizer
+
+tokenizer = Tokenizer.load(
+    "nepali/model/nepali_bpe_31744.json"
+)
+```
+
+---
+
+## 9. Encoding Text
+
+Text can be converted into token IDs using:
+
+```python
+text = "नेपाल एक सुन्दर देश हो।"
+
+ids = tokenizer.encode(text)
+
+print(ids)
+```
+
+The resulting list contains the integer token IDs generated by the
+Nepali BPE tokenizer.
+
+---
+
+## 10. Decoding Text
+
+Token IDs can be converted back into text using:
+
+```python
+decoded = tokenizer.decode(ids)
+
+print(decoded)
+```
+
+The tokenizer also supports round-trip verification:
+
+```python
+tokenizer.verify_round_trip(text)
+```
+
+A successful round trip returns:
+
+```text
+True
+```
+
+This verifies:
+
+```text
+text
+  |
+  v
+encode
+  |
+  v
+token IDs
+  |
+  v
+decode
+  |
+  v
+normalized text
+```
+
+---
+
+## 11. Tokenization Statistics
+
+The tokenizer provides a built-in statistics method:
+
+```python
+stats = tokenizer.tokenization_stats(text)
+
+print(stats)
+```
+
+The statistics include:
+
+- number of characters
+- UTF-8 byte count
+- number of tokens
+- characters per token
+- bytes per token
+- language
+- vocabulary size
+
+---
+
+## 12. Evaluation
+
+A trained tokenizer can be evaluated using:
 
 ```bash
-python -m nepali.tokeniser.train     --language nepali     --data data/clean/nepali     --vocab-size 32000     --output nepali/tokeniser/nepali_tokenizer.json
+python -m nepali.tokenizer.evaluate     --tokenizer nepali/model/nepali_bpe_31744.json     --text <PATH_TO_NEPALI_EVALUATION_DATA>
 ```
 
-## Important
+The evaluation checks tokenizer statistics and round-trip decoding.
 
-Hindi and Nepali must be trained separately. Do not share their
-merge tables or vocabulary.
+Phase 1 evaluation additionally considers:
+
+- fertility
+- characters per token
+- tokens per document
+- vocabulary utilization
+- vocabulary-size sensitivity
+
+---
+
+## 13. Vocabulary-Size Evaluation
+
+The Phase 1 vocabulary-size experiment evaluates the following
+vocabulary configurations:
+
+- 8,192
+- 16,384
+- 24,576
+- 32,768
+- 49,152
+- 65,536
+
+Each vocabulary configuration is trained using the same Nepali training
+budget and evaluated using the same evaluation corpus.
+
+This provides a controlled comparison of vocabulary size versus
+tokenization efficiency.
+
+The main metric used is:
+
+`Fertility = Number of tokens / Number of words`
+
+The experiment studies the trade-off between vocabulary size and
+tokenization efficiency.
+
+The resulting statistics and figures are stored under:
+
+`reports/`
+
+---
+
+## 14. Final Phase 1 Tokenizer
+
+The current Phase 1 Nepali tokenizer configuration is:
+
+| Parameter | Value |
+|---|---|
+| Language | Nepali |
+| Vocabulary size | 31,744 |
+| BPE merges | 31,488 |
+| Training budget | 80M characters |
+
+The trained tokenizer artifact is:
+
+`nepali/model/nepali_bpe_31744.json`
+
+The final vocabulary selection is supported by the Phase 1
+vocabulary-size and fertility evaluation.
+
+---
+
+## 15. Language Independence
+
+The Nepali tokenizer is trained independently from the Hindi tokenizer.
+
+The following are not shared between the two languages:
+
+- training corpus
+- learned BPE merge operations
+- vocabulary
+- tokenizer model
+
+This allows the tokenizer to learn language-specific patterns from the
+Nepali corpus.
+
+---
+
+## 16. Reproducibility
+
+The tokenizer implementation is contained entirely within this
+repository.
+
+The complete corpus is not stored in GitHub because of its size.
+
+The full Phase 1 corpus and large-scale tokenized data are provided
+separately through the project dataset storage.
+
+See the root-level `README.md` for corpus access and project-wide
+reproduction instructions.
+
+---
+
+## 17. Testing
+
+Tokenizer tests are provided in:
+
+`nepali/tokenizer/test_tokenizer.py`
+
+The tokenizer should satisfy basic correctness properties including
+successful encode/decode round trips.
+
+Example:
+
+```python
+text = "नेपाल एक सुन्दर देश हो।"
+
+ids = tokenizer.encode(text)
+decoded = tokenizer.decode(ids)
+
+assert decoded == tokenizer.pretokenizer.normalize(text)
+```
+
+---
+
+## 18. Repository Structure
+
+```text
+nepali/
+└── tokenizer/
+    ├── __init__.py
+    ├── bpe.py
+    ├── config.py
+    ├── decoder.py
+    ├── encoder.py
+    ├── evaluate.py
+    ├── pretokenizer.py
+    ├── README.md
+    ├── test_tokenizer.py
+    ├── tokenizer.py
+    ├── train.py
+    ├── trainer.py
+    └── vocab.py
+```
+
+---
+
+## Phase 1 Summary
+
+The Nepali tokenizer is a language-specific, from-scratch,
+Unicode-aware byte-level BPE tokenizer trained using an 80M-character
+Nepali training sample.
+
+The resulting tokenizer is used to tokenize the Phase 1 Nepali corpus
+and supports reproducible encoding, decoding, evaluation, and
+vocabulary-size analysis.
