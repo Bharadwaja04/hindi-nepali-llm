@@ -512,8 +512,8 @@ Nepali
 Analysis
   ✓ Phase 1 corpus statistics
   ✓ Tokenizer statistics
-  ⏳ Vocabulary-size × fertility experiment
-  ⏳ Final fertility figures and plots
+  ✓ Vocabulary-size × fertility experiment
+  ✓ Final fertility figures and plots
 ```
 
 ---
