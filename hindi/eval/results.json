@@ -1,0 +1,13 @@
+{
+  "language": "hindi",
+  "documents": 2312791,
+  "words": 886594715,
+  "characters": 5393815951,
+  "manual_tokens": 100000000,
+  "non_manual_tokens": 400000000,
+  "total_tokens": 500000000,
+  "manual_fraction": 0.20,
+  "vocabulary_size": 31744,
+  "bpe_merges": 31488,
+  "training_characters": 80000000
+}
