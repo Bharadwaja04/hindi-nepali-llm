@@ -1,0 +1,35 @@
+# Large artifacts never go in git: corpora, tokenized shards, checkpoints, logs.
+data/raw/
+data/processed/
+data/reasoning/*/*.jsonl
+data/reasoning/*/splits/train.jsonl
+data/reasoning/*/splits/validation.jsonl
+checkpoints/
+logs/
+models/*.pt
+models/*.pth
+*.pt
+*.pth
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+
+# Notebooks / OS / editors
+.ipynb_checkpoints/
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+.env
+*.key
+*.pem

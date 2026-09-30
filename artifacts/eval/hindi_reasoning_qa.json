@@ -1,0 +1,238 @@
+{
+  "prompt_mode": "qa",
+  "max_new_tokens": 40,
+  "overall": {
+    "n": 957,
+    "exact_match": 0.08881922675026123,
+    "lenient_match": 0.09404388714733543,
+    "repetition_rate": 0.0
+  },
+  "by_category": {
+    "basic_logic": {
+      "n": 28,
+      "exact_match": 0.0,
+      "lenient_match": 0.0,
+      "repetition_rate": 0.0
+    },
+    "direct_comparison": {
+      "n": 200,
+      "exact_match": 0.02,
+      "lenient_match": 0.045,
+      "repetition_rate": 0.0
+    },
+    "equality": {
+      "n": 151,
+      "exact_match": 0.0,
+      "lenient_match": 0.0,
+      "repetition_rate": 0.0
+    },
+    "multi_hop": {
+      "n": 150,
+      "exact_match": 0.17333333333333334,
+      "lenient_match": 0.17333333333333334,
+      "repetition_rate": 0.0
+    },
+    "ordering": {
+      "n": 200,
+      "exact_match": 0.055,
+      "lenient_match": 0.055,
+      "repetition_rate": 0.0
+    },
+    "transitive_comparison": {
+      "n": 228,
+      "exact_match": 0.19298245614035087,
+      "lenient_match": 0.19298245614035087,
+      "repetition_rate": 0.0
+    }
+  },
+  "examples": [
+    {
+      "id": "hi_08714",
+      "category": "multi_hop",
+      "question": "चार व्यक्तियों के मान इस प्रकार हैं: प्रिया > नेहा, नेहा > कविता, और कविता > मोहन। इनमें सबसे छोटा कौन है?",
+      "gold": "मोहन",
+      "prediction": "कविता",
+      "exact": false,
+      "raw": " कविता\n"
+    },
+    {
+      "id": "hi_00861",
+      "category": "direct_comparison",
+      "question": "कविता की वजन 90 किलोग्राम है और मीना की वजन 50 किलोग्राम है। किसकी वजन अधिक है या क्या दोनों समान हैं?",
+      "gold": "कविता",
+      "prediction": "दोनों समान हैं",
+      "exact": false,
+      "raw": " दोनों समान हैं\n"
+    },
+    {
+      "id": "hi_04499",
+      "category": "transitive_comparison",
+      "question": "यदि अजय का मान सीमा से अधिक है और सीमा का मान गीता से अधिक है, तो इनमें सबसे बड़ा कौन है?",
+      "gold": "अजय",
+      "prediction": "अमित",
+      "exact": false,
+      "raw": " अमित\n"
+    },
+    {
+      "id": "hi_04154",
+      "category": "transitive_comparison",
+      "question": "यदि रवि का मान रोहित से अधिक है और रोहित का मान विकास से अधिक है, तो इनमें सबसे बड़ा कौन है?",
+      "gold": "रवि",
+      "prediction": "रोहित",
+      "exact": false,
+      "raw": " रोहित\n"
+    },
+    {
+      "id": "hi_01367",
+      "category": "direct_comparison",
+      "question": "अजय की ऊँचाई 33 सेंटीमीटर है और सोनम की ऊँचाई 23 सेंटीमीटर है। किसकी ऊँचाई अधिक है या क्या दोनों समान हैं?",
+      "gold": "अजय",
+      "prediction": "दोनों समान हैं",
+      "exact": false,
+      "raw": " दोनों समान हैं\n"
+    },
+    {
+      "id": "hi_02563",
+      "category": "ordering",
+      "question": "विनय, रोहित और अजय की उम्र क्रमशः 14, 46 और 52 वर्ष है। इनमें सबसे अधिक उम्र किसकी है?",
+      "gold": "अजय",
+      "prediction": "किसकी उम्र अधिक है या क्या दोनों समान हैं?",
+      "exact": false,
+      "raw": " किसकी उम्र अधिक है या क्या दोनों समान हैं?\n"
+    },
+    {
+      "id": "hi_03489",
+      "category": "ordering",
+      "question": "कविता, सुरेश और सीमा की अंक क्रमशः 50, 49 और 36 अंक है। इनमें सबसे कम अंक किसकी है?",
+      "gold": "सीमा",
+      "prediction": "किसकी अंक अधिक है या क्या दोनों समान हैं?",
+      "exact": false,
+      "raw": " किसकी अंक अधिक है या क्या दोनों समान हैं?\n"
+    },
+    {
+      "id": "hi_03404",
+      "category": "ordering",
+      "question": "अजय, पूजा और मीना की अंक क्रमशः 99, 98 और 67 अंक है। इनमें सबसे अधिक अंक किसकी है?",
+      "gold": "अजय",
+      "prediction": "किसकी अंक अधिक है या क्या दोनों समान हैं?",
+      "exact": false,
+      "raw": " किसकी अंक अधिक है या क्या दोनों समान हैं?\n"
+    },
+    {
+      "id": "hi_04192",
+      "category": "transitive_comparison",
+      "question": "यदि अमित का मान पूजा से अधिक है और पूजा का मान मीना से अधिक है, तो इनमें सबसे बड़ा कौन है?",
+      "gold": "अमित",
+      "prediction": "पूजा",
+      "exact": false,
+      "raw": " पूजा\n"
+    },
+    {
+      "id": "hi_03752",
+      "category": "ordering",
+      "question": "अजय, मोहन और सीता की कीमत क्रमशः 11, 72 और 86 रुपये है। इनमें सबसे अधिक कीमत किसकी है?",
+      "gold": "सीता",
+      "prediction": "किसकी कीमत अधिक है या क्या दोनों समान हैं?",
+      "exact": false,
+      "raw": " किसकी कीमत अधिक है या क्या दोनों समान हैं?\n"
+    },
+    {
+      "id": "hi_06866",
+      "category": "equality",
+      "question": "मीना की ऊँचाई 26 सेंटीमीटर है। राम की ऊँचाई भी 26 सेंटीमीटर है। किसकी ऊँचाई अधिक है?",
+      "gold": "दोनों समान हैं",
+      "prediction": "राम",
+      "exact": false,
+      "raw": " राम\n"
+    },
+    {
+      "id": "hi_01271",
+      "category": "direct_comparison",
+      "question": "अमित की ऊँचाई 45 सेंटीमीटर है और रोहित की ऊँचाई 13 सेंटीमीटर है। किसकी ऊँचाई अधिक है या क्या दोनों समान हैं?",
+      "gold": "अमित",
+      "prediction": "दोनों समान हैं",
+      "exact": false,
+      "raw": " दोनों समान हैं\n"
+    },
+    {
+      "id": "hi_01773",
+      "category": "direct_comparison",
+      "question": "विनय की अंक 59 अंक है और गीता की अंक 57 अंक है। किसकी अंक अधिक है या क्या दोनों समान हैं?",
+      "gold": "विनय",
+      "prediction": "चार व्यक्तियों के मान इस प्रकार हैं: रवि > रवि, रोहित > रोहित, और रोहित > रोहित। इनमें",
+      "exact": false,
+      "raw": " चार व्यक्तियों के मान इस प्रकार हैं: रवि > रवि, रोहित > रोहित, और रोहित > रोहित। इनमें"
+    },
+    {
+      "id": "hi_03382",
+      "category": "ordering",
+      "question": "अमित, पूजा और विनय की अंक क्रमशः 37, 27 और 11 अंक है। इनमें सबसे कम अंक किसकी है?",
+      "gold": "विनय",
+      "prediction": "किसकी अंक अधिक है या क्या दोनों समान हैं?",
+      "exact": false,
+      "raw": " किसकी अंक अधिक है या क्या दोनों समान हैं?\n"
+    },
+    {
+      "id": "hi_00998",
+      "category": "direct_comparison",
+      "question": "अमित की कीमत 6 रुपये है और पूजा की कीमत 75 रुपये है। किसकी कीमत अधिक है या क्या दोनों समान हैं?",
+      "gold": "पूजा",
+      "prediction": "दोनों समान हैं",
+      "exact": false,
+      "raw": " दोनों समान हैं\n"
+    },
+    {
+      "id": "hi_05245",
+      "category": "transitive_comparison",
+      "question": "यदि नेहा का मान विकास से अधिक है और विकास का मान अनिल से अधिक है, तो इनमें सबसे बड़ा कौन है?",
+      "gold": "नेहा",
+      "prediction": "विकास",
+      "exact": false,
+      "raw": " विकास\n"
+    },
+    {
+      "id": "hi_03886",
+      "category": "ordering",
+      "question": "रवि, पूजा और सोनम की ऊँचाई क्रमशः 38, 35 और 49 सेंटीमीटर है। इनमें सबसे कम ऊँचाई किसकी है?",
+      "gold": "पूजा",
+      "prediction": "किसकी ऊँचाई अधिक है या क्या दोनों समान हैं?",
+      "exact": false,
+      "raw": " किसकी ऊँचाई अधिक है या क्या दोनों समान हैं?\n"
+    },
+    {
+      "id": "hi_08273",
+      "category": "multi_hop",
+      "question": "चार व्यक्तियों के मान इस प्रकार हैं: रोहित > सोनम, सोनम > प्रिया, और प्रिया > सुरेश। इनमें सबसे छोटा कौन है?",
+      "gold": "सुरेश",
+      "prediction": "सोनम",
+      "exact": false,
+      "raw": " सोनम\n"
+    },
+    {
+      "id": "hi_06580",
+      "category": "equality",
+      "question": "अमित की अंक 99 अंक है। राधा की अंक भी 99 अंक है। किसकी अंक अधिक है?",
+      "gold": "दोनों समान हैं",
+      "prediction": "अमित",
+      "exact": false,
+      "raw": " अमित\n"
+    },
+    {
+      "id": "hi_06918",
+      "category": "equality",
+      "question": "रोहित की उम्र 18 वर्ष है। नेहा की उम्र भी 18 वर्ष है। किसकी उम्र अधिक है?",
+      "gold": "दोनों समान हैं",
+      "prediction": "नेहा",
+      "exact": false,
+      "raw": " नेहा\n"
+    }
+  ],
+  "baselines": {
+    "majority_answer": "दोनों समान हैं",
+    "majority_exact_match": 0.15987460815047022,
+    "informed_chance_exact_match": 0.24494949494949667,
+    "distinct_answers": 22
+  },
+  "language": "hindi",
+  "checkpoint": "models/hindi_finetuned_phase3.pt"
+}

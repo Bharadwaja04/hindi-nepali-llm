@@ -1,0 +1,52 @@
+{
+  "evaluation_stage": "after_finetuning",
+  "total_samples": 60,
+  "answer_match_count": 6,
+  "answer_match_accuracy": 0.1,
+  "repetition_count": 0,
+  "repetition_rate": 0.0,
+  "category_metrics": {
+    "basic_logic": {
+      "samples": 10,
+      "answer_match_count": 6,
+      "answer_match_accuracy": 0.6,
+      "repetition_count": 0,
+      "repetition_rate": 0.0
+    },
+    "direct_comparison": {
+      "samples": 10,
+      "answer_match_count": 0,
+      "answer_match_accuracy": 0.0,
+      "repetition_count": 0,
+      "repetition_rate": 0.0
+    },
+    "equality": {
+      "samples": 10,
+      "answer_match_count": 0,
+      "answer_match_accuracy": 0.0,
+      "repetition_count": 0,
+      "repetition_rate": 0.0
+    },
+    "multi_hop": {
+      "samples": 10,
+      "answer_match_count": 0,
+      "answer_match_accuracy": 0.0,
+      "repetition_count": 0,
+      "repetition_rate": 0.0
+    },
+    "ordering": {
+      "samples": 10,
+      "answer_match_count": 0,
+      "answer_match_accuracy": 0.0,
+      "repetition_count": 0,
+      "repetition_rate": 0.0
+    },
+    "transitive_comparison": {
+      "samples": 10,
+      "answer_match_count": 0,
+      "answer_match_accuracy": 0.0,
+      "repetition_count": 0,
+      "repetition_rate": 0.0
+    }
+  }
+}

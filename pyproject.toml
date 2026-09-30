@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "indic-lm"
+version = "0.1.0"
+description = "From-scratch BPE tokenizers and decoder-only Transformer language models for Hindi and Nepali."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Bharadwaja Vadali" }]
+dependencies = [
+    "torch>=2.2",
+    "regex>=2023.0",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.4"]
+plots = ["matplotlib>=3.7"]
+
+[project.scripts]
+indic-lm-tokenizer-train = "indic_lm.tokenizer.train:main"
+indic-lm-pretrain = "indic_lm.training.pretrain:main"
+indic-lm-finetune = "indic_lm.training.finetune:main"
+indic-lm-eval-reasoning = "indic_lm.evaluation.reasoning:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -W ignore::UserWarning"
+markers = [
+    "slow: tests that train a tiny model or read large artifacts",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["B905"]
+# Legacy data-collection scripts are kept as-is; they are not part of the tested core.
+extend-per-file-ignores = { "src/indic_lm/data/**" = ["E", "F", "B", "I"], "src/indic_lm/reasoning/**" = ["E", "F", "B", "I"] }

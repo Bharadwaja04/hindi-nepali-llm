@@ -1,0 +1,48 @@
+{
+  "hindi": {
+    "vocab_size": 31744,
+    "learned_merges": 31488,
+    "round_trip_failures": 0,
+    "on_own_language": {
+      "texts": 400,
+      "fertility": 2.119,
+      "chars_per_token": 2.085,
+      "bytes_per_token": 5.109,
+      "whitespace_token_share": 0.449,
+      "fertility_excluding_whitespace_tokens": 1.168
+    },
+    "on_other_language": {
+      "nepali": {
+        "texts": 400,
+        "fertility": 2.684,
+        "chars_per_token": 1.792,
+        "bytes_per_token": 4.519,
+        "whitespace_token_share": 0.354,
+        "fertility_excluding_whitespace_tokens": 1.735
+      }
+    }
+  },
+  "nepali": {
+    "vocab_size": 31744,
+    "learned_merges": 31488,
+    "round_trip_failures": 0,
+    "on_own_language": {
+      "texts": 400,
+      "fertility": 2.142,
+      "chars_per_token": 2.246,
+      "bytes_per_token": 5.664,
+      "whitespace_token_share": 0.443,
+      "fertility_excluding_whitespace_tokens": 1.192
+    },
+    "on_other_language": {
+      "hindi": {
+        "texts": 400,
+        "fertility": 2.358,
+        "chars_per_token": 1.873,
+        "bytes_per_token": 4.591,
+        "whitespace_token_share": 0.403,
+        "fertility_excluding_whitespace_tokens": 1.407
+      }
+    }
+  }
+}

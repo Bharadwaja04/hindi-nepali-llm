@@ -1,0 +1,22 @@
+{
+  "language": "hindi",
+  "vocab_size": 31744,
+  "d_model": 288,
+  "num_heads": 8,
+  "num_layers": 6,
+  "d_ff": 1440,
+  "seq_len": 128,
+  "dropout": 0.1,
+  "batch_size": 16,
+  "grad_accum_steps": 4,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.1,
+  "warmup_steps": 2000,
+  "max_grad_norm": 1.0,
+  "target_tokens": 500000000,
+  "max_steps": 61035,
+  "log_every": 1000,
+  "save_every": 1000,
+  "manual_target_tokens": 100000000,
+  "nonmanual_target_tokens": 400000000
+}

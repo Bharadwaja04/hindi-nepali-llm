@@ -1,0 +1,38 @@
+{
+  "layer_0": {
+    "mean_entropy": 2.274176836013794,
+    "mean_attention_distance": 8.143553469835954,
+    "num_heads": 8,
+    "sequence_length": 40
+  },
+  "layer_1": {
+    "mean_entropy": 2.1941933631896973,
+    "mean_attention_distance": 8.762529762337744,
+    "num_heads": 8,
+    "sequence_length": 40
+  },
+  "layer_2": {
+    "mean_entropy": 1.2813982963562012,
+    "mean_attention_distance": 3.8622208120425214,
+    "num_heads": 8,
+    "sequence_length": 40
+  },
+  "layer_3": {
+    "mean_entropy": 1.5097553730010986,
+    "mean_attention_distance": 3.928389136012574,
+    "num_heads": 8,
+    "sequence_length": 40
+  },
+  "layer_4": {
+    "mean_entropy": 2.010223150253296,
+    "mean_attention_distance": 6.125975713279255,
+    "num_heads": 8,
+    "sequence_length": 40
+  },
+  "layer_5": {
+    "mean_entropy": 2.2357571125030518,
+    "mean_attention_distance": 9.072750623836805,
+    "num_heads": 8,
+    "sequence_length": 40
+  }
+}

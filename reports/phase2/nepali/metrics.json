@@ -1,0 +1,14 @@
+{
+  "language": "nepali",
+  "checkpoint": "final_model.pt",
+  "checkpoint_step": 61035,
+  "parameters": 25345216,
+  "vocab_size": 31744,
+  "evaluation_type": "deterministic_held_out_test_subset",
+  "random_seed": 42,
+  "documents_evaluated": 1000,
+  "evaluation_tokens": 359396,
+  "loss": 2.604710323238386,
+  "perplexity": 13.527306188886792,
+  "bits_per_token": 3.757802666288309
+}
